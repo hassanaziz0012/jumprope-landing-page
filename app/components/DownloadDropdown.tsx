@@ -2,28 +2,29 @@
 
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { downloadLinks } from "../constants";
 
 const options = [
   {
+    key: "google" as const,
     icon: "🤖",
     label: "Google Play",
     description: "Download from the Play Store",
     tag: "recommended",
-    href: "#",
   },
   {
+    key: "apk" as const,
     icon: "📦",
     label: "Download APK",
     description: "Android — manual install",
     tag: null,
-    href: "#",
   },
   {
+    key: "ipa" as const,
     icon: "🍎",
     label: "Download IPA",
     description: "iOS — manual install",
     tag: null,
-    href: "#",
   },
 ];
 
@@ -58,32 +59,39 @@ export default function DownloadDropdown({ className }: DownloadDropdownProps) {
     };
   }, []);
 
-  const menuOptionsNodes = options.map((opt) => (
-    <a
-      key={opt.label}
-      href={opt.href}
-      className="flex items-center gap-3 px-3.5 py-3 rounded-lg no-underline text-text-primary transition-colors duration-200 hover:bg-card-secondary"
-      role="menuitem"
-      onClick={() => setOpen(false)}
-    >
-      <span className="text-2xl shrink-0 w-9 h-9 flex items-center justify-center">
-        {opt.icon}
-      </span>
-      <div className="flex flex-col gap-0.5">
-        <span className="font-semibold text-[0.9375rem] flex flex-col items-start">
-          {opt.label}
-          {opt.tag && (
-            <span className="text-[0.6875rem] font-medium text-lime bg-lime-dim px-2 py-0.5 rounded-full uppercase tracking-wide">
-              {opt.tag}
-            </span>
-          )}
+  const menuOptionsNodes = options.map((opt) => {
+    const href = downloadLinks[opt.key] || "#";
+    const hasLink = href !== "#";
+
+    return (
+      <a
+        key={opt.label}
+        href={href}
+        target={hasLink ? "_blank" : undefined}
+        rel={hasLink ? "noopener noreferrer" : undefined}
+        className="flex items-center gap-3 px-3.5 py-3 rounded-lg no-underline text-text-primary transition-colors duration-200 hover:bg-card-secondary"
+        role="menuitem"
+        onClick={() => setOpen(false)}
+      >
+        <span className="text-2xl shrink-0 w-9 h-9 flex items-center justify-center">
+          {opt.icon}
         </span>
-        <span className="text-[0.8125rem] text-text-secondary">
-          {opt.description}
-        </span>
-      </div>
-    </a>
-  ));
+        <div className="flex flex-col gap-0.5">
+          <span className="font-semibold text-[0.9375rem] flex flex-col items-start">
+            {opt.label}
+            {opt.tag && (
+              <span className="text-[0.6875rem] font-medium text-lime bg-lime-dim px-2 py-0.5 rounded-full uppercase tracking-wide">
+                {opt.tag}
+              </span>
+            )}
+          </span>
+          <span className="text-[0.8125rem] text-text-secondary">
+            {opt.description}
+          </span>
+        </div>
+      </a>
+    );
+  });
 
   return (
     <div ref={ref} className={`relative inline-flex ${className ?? ""}`}>
