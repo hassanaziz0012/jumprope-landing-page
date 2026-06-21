@@ -6,23 +6,23 @@ import { downloadLinks } from "../constants";
 
 const options = [
   {
-    key: "google" as const,
-    icon: "🤖",
-    label: "Google Play",
-    description: "Download from the Play Store",
-    tag: "recommended",
-  },
-  {
     key: "apk" as const,
     icon: "📦",
-    label: "Download APK",
+    label: "APK Direct Downloads",
     description: "Android — manual install",
     tag: null,
   },
   {
+    key: "google" as const,
+    icon: "🤖",
+    label: "Google Play Store",
+    description: "Download from the Play Store",
+    tag: "recommended",
+  },
+  {
     key: "ipa" as const,
-    icon: "🍎",
-    label: "Download IPA",
+    icon: "🍏",
+    label: "the IPA file",
     description: "iOS — manual install",
     tag: null,
   },
@@ -30,9 +30,10 @@ const options = [
 
 interface DownloadDropdownProps {
   className?: string;
+  label?: string;
 }
 
-export default function DownloadDropdown({ className }: DownloadDropdownProps) {
+export default function DownloadDropdown({ className, label = "Download" }: DownloadDropdownProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
@@ -60,36 +61,62 @@ export default function DownloadDropdown({ className }: DownloadDropdownProps) {
   }, []);
 
   const menuOptionsNodes = options.map((opt) => {
-    const href = downloadLinks[opt.key] || "#";
-    const hasLink = href !== "#";
+    const href = downloadLinks[opt.key] || "";
+    const hasLink = href !== "";
+
+    if (hasLink) {
+      return (
+        <a
+          key={opt.label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 px-3.5 py-3 rounded-lg no-underline text-text-primary transition-colors duration-200 hover:bg-card-secondary"
+          role="menuitem"
+          onClick={() => setOpen(false)}
+        >
+          <span className="text-2xl shrink-0 w-9 h-9 flex items-center justify-center">
+            {opt.icon}
+          </span>
+          <div className="flex flex-col gap-0.5">
+            <span className="font-semibold text-[0.9375rem] flex flex-col items-start">
+              {opt.label}
+              {opt.tag && (
+                <span className="text-[0.6875rem] font-medium text-lime bg-lime-dim px-2 py-0.5 rounded-full uppercase tracking-wide mt-1">
+                  {opt.tag}
+                </span>
+              )}
+            </span>
+            <span className="text-[0.8125rem] text-text-secondary">
+              {opt.description}
+            </span>
+          </div>
+        </a>
+      );
+    }
 
     return (
-      <a
+      <div
         key={opt.label}
-        href={href}
-        target={hasLink ? "_blank" : undefined}
-        rel={hasLink ? "noopener noreferrer" : undefined}
-        className="flex items-center gap-3 px-3.5 py-3 rounded-lg no-underline text-text-primary transition-colors duration-200 hover:bg-card-secondary"
+        className="flex items-center gap-3 px-3.5 py-3 rounded-lg text-text-primary/40 select-none cursor-not-allowed"
         role="menuitem"
-        onClick={() => setOpen(false)}
+        aria-disabled="true"
       >
-        <span className="text-2xl shrink-0 w-9 h-9 flex items-center justify-center">
+        <span className="text-2xl shrink-0 w-9 h-9 flex items-center justify-center opacity-40">
           {opt.icon}
         </span>
         <div className="flex flex-col gap-0.5">
-          <span className="font-semibold text-[0.9375rem] flex flex-col items-start">
+          <span className="font-semibold text-[0.9375rem] flex flex-col items-start text-text-primary/40">
             {opt.label}
-            {opt.tag && (
-              <span className="text-[0.6875rem] font-medium text-lime bg-lime-dim px-2 py-0.5 rounded-full uppercase tracking-wide">
-                {opt.tag}
-              </span>
-            )}
+            <span className="text-[0.6875rem] font-medium text-text-muted bg-card-secondary px-2 py-0.5 rounded-full uppercase tracking-wide mt-1">
+              Coming Soon
+            </span>
           </span>
-          <span className="text-[0.8125rem] text-text-secondary">
+          <span className="text-[0.8125rem] text-text-muted">
             {opt.description}
           </span>
         </div>
-      </a>
+      </div>
     );
   });
 
@@ -102,7 +129,7 @@ export default function DownloadDropdown({ className }: DownloadDropdownProps) {
         aria-haspopup="true"
         id="download-button"
       >
-        Download
+        {label}
         <span
           className={`inline-block transition-transform duration-200 text-[0.75rem] md:text-sm ${open ? "rotate-180" : ""}`}
         >
