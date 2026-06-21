@@ -1,13 +1,13 @@
 const items = [
-  { icon: "📵", text: "Offline. No accounts. No subscriptions." },
-  { icon: "📱", text: "Android & iOS" },
+  { icon: "✨", text: "100% Free" },
+  { icon: "📵", text: "Offline, no accounts, no subscriptions" },
   { icon: "🔓", text: "Open source on GitHub" },
 ];
 
 export default function CredibilityBar() {
   return (
-    <section
-      className="border-y border-border py-5"
+    <div
+      className="border-y border-border py-5 w-full"
       id="credibility-bar"
     >
       <div className="w-full max-w-[1200px] mx-auto px-[clamp(1rem,5vw,3rem)] flex items-center justify-center gap-8 flex-wrap">
@@ -22,6 +22,6 @@ export default function CredibilityBar() {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
