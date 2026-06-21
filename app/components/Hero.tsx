@@ -1,6 +1,7 @@
 import Image from "next/image";
 import DownloadDropdown from "./DownloadDropdown";
 import { GITHUB_REPO_URL } from "../constants";
+import CredibilityBar from "./CredibilityBar";
 
 const floatingBadges = [
   { text: "🔥 47-day streak", cls: "top-[5%] left-[-5%] float-delay-1" },
@@ -11,7 +12,8 @@ const floatingBadges = [
 export default function Hero() {
   return (
     <section
-      className="relative pt-[calc(80px+clamp(4rem,8vh,7rem))] pb-[clamp(4rem,8vh,7rem)] min-h-screen flex items-center"
+      className="relative pt-8 md:pt-12 pb-0 flex flex-col justify-between"
+      style={{ minHeight: "calc(100vh - 65px)" }}
       id="hero"
     >
       {/* Background glow */}
@@ -20,7 +22,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 lg:px-12 grid grid-cols-2 gap-16 items-center max-[900px]:grid-cols-1 max-[900px]:gap-12 max-[900px]:text-center">
+      <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 lg:px-12 grid grid-cols-2 gap-16 items-center my-auto max-[900px]:grid-cols-1 max-[900px]:gap-12 max-[900px]:text-center py-8">
         {/* Left: Text + CTA */}
         <div className="relative z-20 flex flex-col items-start gap-6 hero-stagger max-[900px]:items-center">
           <span className="animate-hero-fade inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium bg-lime-dim text-lime">
@@ -37,7 +39,7 @@ export default function Hero() {
           </p>
 
           <div className="animate-hero-fade flex items-center gap-6 flex-wrap pt-2 max-[900px]:justify-center">
-            <DownloadDropdown />
+            <DownloadDropdown label="Download free" />
             <a
               href={GITHUB_REPO_URL}
               target="_blank"
@@ -50,7 +52,7 @@ export default function Hero() {
         </div>
 
         {/* Right: Phone mockups */}
-        <div className="relative flex justify-center items-center min-h-[500px] max-[900px]:min-h-[400px] max-[480px]:min-h-0">
+        <div className="relative flex justify-center items-center min-h-[400px] max-[900px]:min-h-[300px] max-[480px]:min-h-0 w-full">
           {/* Floating badges */}
           <div className="absolute inset-0 z-10 pointer-events-none max-[900px]:hidden" aria-hidden="true">
             {floatingBadges.map((badge) => (
@@ -74,6 +76,7 @@ export default function Hero() {
                   width={260}
                   height={563}
                   priority
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -87,6 +90,7 @@ export default function Hero() {
                   width={280}
                   height={607}
                   priority
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -100,12 +104,14 @@ export default function Hero() {
                   width={260}
                   height={563}
                   priority
+                  className="w-full h-auto"
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <CredibilityBar />
     </section>
   );
 }

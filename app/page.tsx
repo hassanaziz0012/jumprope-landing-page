@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import CredibilityBar from "./components/CredibilityBar";
 import FeatureHighlights from "./components/FeatureHighlights";
 import PhilosophyCards from "./components/PhilosophyCards";
 import TrackingOverview from "./components/TrackingOverview";
@@ -17,7 +16,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <CredibilityBar />
         <FeatureHighlights />
         <PhilosophyCards />
         <TrackingOverview />
