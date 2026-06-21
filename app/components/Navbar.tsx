@@ -38,7 +38,7 @@ export default function Navbar() {
           </span>
         </a>
 
-        <DownloadDropdown />
+        <DownloadDropdown label="Download free" />
       </div>
     </nav>
   );

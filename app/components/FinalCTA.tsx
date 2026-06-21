@@ -22,7 +22,7 @@ export default function FinalCTA() {
         </p>
 
         <div className="flex items-center justify-center gap-6 flex-wrap">
-          <DownloadDropdown />
+          <DownloadDropdown label="Download free" />
           <a
             href={GITHUB_REPO_URL}
             target="_blank"
