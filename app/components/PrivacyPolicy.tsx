@@ -3,14 +3,14 @@ export default function PrivacyPolicy() {
 
   return (
     <section
-      className="py-[clamp(3rem,6vh,5rem)] border-t border-border"
+      className="py-[clamp(3rem,6vh,5rem)] border-t border-border "
       id="privacy-policy"
     >
       <div className="w-full max-w-[720px] mx-auto px-[clamp(1rem,5vw,3rem)]">
         <h3 className="text-text-muted text-sm font-semibold uppercase tracking-wider mb-6">
           Privacy Policy
         </h3>
-        <div className="text-text-muted text-[0.8125rem] leading-relaxed space-y-8">
+        <div className="text-text-secondary text-[0.8125rem] leading-relaxed space-y-8">
           <div className="space-y-4">
             <div>
               <p>Effective Date: April 7, 2026 &middot; Last Updated: April 7, 2026</p>
