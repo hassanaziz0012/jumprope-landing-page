@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { downloadLinks } from "../constants";
+import LeadCaptureModal from "./LeadCaptureModal";
 
 const options = [
   {
@@ -35,6 +36,7 @@ interface DownloadDropdownProps {
 
 export default function DownloadDropdown({ className, label = "Download" }: DownloadDropdownProps) {
   const [open, setOpen] = useState(false);
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -65,15 +67,27 @@ export default function DownloadDropdown({ className, label = "Download" }: Down
     const hasLink = href !== "";
 
     if (hasLink) {
+      const isApk = opt.key === "apk";
+
+      const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        if (isApk) {
+          e.preventDefault();
+          setOpen(false);
+          setLeadModalOpen(true);
+        } else {
+          setOpen(false);
+        }
+      };
+
       return (
         <a
           key={opt.label}
-          href={href}
-          target="_blank"
+          href={isApk ? "#" : href}
+          target={isApk ? undefined : "_blank"}
           rel="noopener noreferrer"
           className="flex items-center gap-3 px-3.5 py-3 rounded-lg no-underline text-text-primary transition-colors duration-200 hover:bg-card-secondary"
           role="menuitem"
-          onClick={() => setOpen(false)}
+          onClick={handleClick}
         >
           <span className="text-2xl shrink-0 w-9 h-9 flex items-center justify-center">
             {opt.icon}
@@ -169,6 +183,13 @@ export default function DownloadDropdown({ className, label = "Download" }: Down
         </div>,
         document.body
       )}
+
+      {/* Lead Capture Modal */}
+      <LeadCaptureModal
+        isOpen={leadModalOpen}
+        onClose={() => setLeadModalOpen(false)}
+        apkUrl={downloadLinks.apk || ""}
+      />
     </div>
   );
 }
