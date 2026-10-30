@@ -9,10 +9,13 @@ import FinalCTA from "./components/FinalCTA";
 import FAQ from "./components/FAQ";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Footer from "./components/Footer";
+import JsonLd from "./components/JsonLd";
+import { homeJsonLd } from "./lib/jsonLd";
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeJsonLd()} />
       <Navbar />
       <main>
         <Hero />

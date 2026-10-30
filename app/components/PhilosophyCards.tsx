@@ -1,24 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
-const cards = [
-  {
-    icon: "📵",
-    headline: "Offline First",
-    body: "All your data lives on your device. No cloud, no accounts, no subscriptions — ever.",
-  },
-  {
-    icon: "🎯",
-    headline: "Minimal & Focused",
-    body: "One thing, done exceptionally well. No feature bloat. No distractions.",
-  },
-  {
-    icon: "✨",
-    headline: "Delightful UX",
-    body: "Smooth animations, satisfying interactions, and celebratory moments at every milestone.",
-  },
-];
+import { philosophyCards as cards } from "../content";
 
 export default function PhilosophyCards() {
   const ref = useRef<HTMLDivElement>(null);

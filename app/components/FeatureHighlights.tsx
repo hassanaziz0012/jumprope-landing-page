@@ -2,58 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-
-interface Feature {
-  id: string;
-  headline: string;
-  body: string;
-  screenshot: string;
-  badge: { label: string; color: string } | null;
-  imageOnLeft: boolean;
-}
-
-const features: Feature[] = [
-  {
-    id: "workout-logging",
-    headline: "Log every rep. Miss nothing.",
-    body: "Track duration, skip count, trips, calories, heart rate, and notes. Everything you need — nothing you don't.",
-    screenshot: "/images/log-workouts-thumbnail.png",
-    badge: null,
-    imageOnLeft: true,
-  },
-  {
-    id: "ai-coach",
-    headline: "Your personal coach, powered by AI.",
-    body: "Ask questions, get personalized advice, or just log a workout in plain English. The coach knows your data — your workouts, your goals, all of it.",
-    screenshot: "/images/ai-coach-thumbnail.png",
-    badge: { label: "✨ New", color: "#ccfa53" },
-    imageOnLeft: false,
-  },
-  {
-    id: "streaks",
-    headline: "Build streaks. Break records.",
-    body: "Keep the flame alive with consecutive-day tracking. Mark rest days to protect your streak. No excuses — if it breaks, it breaks.",
-    screenshot: "/images/streaks-thumbnail.png",
-    badge: null,
-    imageOnLeft: true,
-  },
-  {
-    id: "goals",
-    headline: "Set goals. Crush them. Repeat.",
-    body: "Daily and weekly goals for skips, calories, duration, or workout count. Progress rings keep you honest. Automatic resets so you're always moving forward.",
-    screenshot: "/images/goal-tracking-thumbnail.png",
-    badge: null,
-    imageOnLeft: false,
-  },
-  {
-    id: "share-cards",
-    headline: "Show off your progress.",
-    body: "Generate beautiful, branded share cards for milestones, streaks, and personal records. No watermarks. Just clean, shareable wins.",
-    screenshot: "/images/share-cards-thumbnail.png",
-    badge: null,
-    imageOnLeft: true,
-  },
-];
+import { features, type Feature } from "../content";
 
 function FeatureRow({ feature }: { feature: Feature }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -141,6 +90,7 @@ export default function FeatureHighlights() {
       className="py-[clamp(4rem,8vh,7rem)] overflow-hidden"
       id="features"
     >
+      <h2 className="sr-only">Features</h2>
       <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 lg:px-12 flex flex-col gap-24 max-[900px]:gap-20">
         {features.map((feature) => (
           <FeatureRow key={feature.id} feature={feature} />

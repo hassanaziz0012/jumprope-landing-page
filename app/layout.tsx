@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { metadataBase, pageMetadata } from "./lib/metadata";
+import { AUTHOR, HOME_TITLE, SITE_DESCRIPTION } from "./lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -9,9 +11,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Jumprope Tracker — Your Jump Rope Journey, Beautifully Tracked",
-  description:
-    "Log workouts, crush goals, and build unstoppable streaks — all offline, all on your device. Free, open-source jump rope tracking for Android & iOS.",
+  metadataBase,
+  ...pageMetadata({
+    title: HOME_TITLE,
+    description: SITE_DESCRIPTION,
+    path: "/",
+  }),
   keywords: [
     "jump rope",
     "jump rope tracker",
@@ -20,14 +25,8 @@ export const metadata: Metadata = {
     "offline fitness",
     "streak tracker",
   ],
-  openGraph: {
-    title: "Jumprope Tracker — Your Jump Rope Journey, Beautifully Tracked",
-    description:
-      "Log workouts, crush goals, and build unstoppable streaks — all offline, all on your device.",
-    url: "https://jumprope.hassandev.me",
-    siteName: "Jumprope Tracker",
-    type: "website",
-  },
+  authors: [AUTHOR],
+  creator: AUTHOR.name,
 };
 
 export default function RootLayout({

@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
-const badges = [
-  { name: "First Skip", emoji: "🎉", requirement: "Log your first workout" },
-  { name: "7-Day Streak", emoji: "🔥", requirement: "Work out 7 days in a row" },
-  { name: "30-Day Streak", emoji: "💪", requirement: "Work out 30 days in a row" },
-  { name: "Thousand Club", emoji: "🏅", requirement: "1,000 skips in one session" },
-  { name: "Speed Demon", emoji: "⚡", requirement: "150+ avg skips/min" },
-  { name: "Million Club", emoji: "👑", requirement: "1,000,000 lifetime skips" },
-];
+import { badges } from "../content";
 
 export default function AchievementsTeaser() {
   const ref = useRef<HTMLDivElement>(null);

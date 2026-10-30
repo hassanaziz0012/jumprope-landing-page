@@ -1,21 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-
-const trackables = [
-  { icon: "⏱", label: "Duration" },
-  { icon: "🔢", label: "Total Skips & Avg Skips/Min" },
-  { icon: "🪢", label: "Trips (interruptions/misses)" },
-  { icon: "🔥", label: "Calories Burned" },
-  { icon: "❤️", label: "Heart Rate (Avg & Max)" },
-  { icon: "📝", label: "Workout Notes" },
-  { icon: "📈", label: "Custom Charts (Bar, Line, Area)" },
-  { icon: "🎯", label: "Goals (Daily & Weekly, multiple)" },
-  { icon: "🔥", label: "Workout Streaks + Rest Days" },
-  { icon: "🏆", label: "Achievements & Badges" },
-  { icon: "📤", label: "CSV & JSON Export" },
-  { icon: "🤖", label: "AI Coach + Weekly Digest" },
-];
+import { trackables } from "../content";
 
 export default function TrackingOverview() {
   const ref = useRef<HTMLDivElement>(null);

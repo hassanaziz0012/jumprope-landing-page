@@ -2,6 +2,7 @@ import Image from "next/image";
 import DownloadDropdown from "./DownloadDropdown";
 import { GITHUB_REPO_URL } from "../constants";
 import CredibilityBar from "./CredibilityBar";
+import { hero } from "../content";
 
 const floatingBadges = [
   { text: "🔥 47-day streak", cls: "top-[5%] left-[-5%] float-delay-1" },
@@ -26,16 +27,15 @@ export default function Hero() {
         {/* Left: Text + CTA */}
         <div className="relative z-20 flex flex-col items-start gap-6 hero-stagger max-[900px]:items-center">
           <span className="animate-hero-fade inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium bg-lime-dim text-lime">
-            🔥 Track every jump. Build every streak.
+            {hero.tagline}
           </span>
 
           <h1 className="animate-hero-fade text-[clamp(2.5rem,5vw+1rem,4.5rem)] font-bold leading-[1.08] tracking-tight">
-            Your Jump Rope Journey, Beautifully Tracked.
+            {hero.headline}
           </h1>
 
           <p className="animate-hero-fade text-[clamp(1rem,1vw+0.25rem,1.125rem)] text-text-secondary leading-relaxed max-w-[480px] max-[900px]:max-w-[560px]">
-            Log workouts, crush goals, and build unstoppable streaks — all
-            offline, all on your device.
+            {hero.subheadline}
           </p>
 
           <div className="animate-hero-fade flex items-center gap-6 flex-wrap pt-2 max-[900px]:justify-center">

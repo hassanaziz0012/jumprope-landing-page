@@ -1,8 +1,4 @@
-const items = [
-  { icon: "✨", text: "100% Free" },
-  { icon: "📵", text: "Offline, no accounts, no subscriptions" },
-  { icon: "🔓", text: "Open source on GitHub" },
-];
+import { credibilityItems as items } from "../content";
 
 export default function CredibilityBar() {
   return (

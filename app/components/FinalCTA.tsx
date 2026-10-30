@@ -1,5 +1,6 @@
 import DownloadDropdown from "./DownloadDropdown";
 import { GITHUB_REPO_URL } from "../constants";
+import { finalCta } from "../content";
 
 export default function FinalCTA() {
   return (
@@ -15,10 +16,10 @@ export default function FinalCTA() {
 
       <div className="w-full max-w-[1200px] mx-auto px-4 md:px-8 lg:px-12 text-center relative z-10">
         <h2 className="text-[clamp(2.5rem,4vw+0.5rem,3.5rem)] font-bold leading-tight tracking-tight mb-5">
-          Ready to jump?
+          {finalCta.headline}
         </h2>
         <p className="text-text-secondary text-[clamp(1rem,1.2vw+0.25rem,1.25rem)] mb-10 max-w-[500px] mx-auto">
-          Free. Offline. No accounts. Just you and your rope.
+          {finalCta.body}
         </p>
 
         <div className="flex items-center justify-center gap-6 flex-wrap">

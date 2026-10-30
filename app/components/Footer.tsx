@@ -1,9 +1,16 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const socials = [
   { label: "Twitter/X", href: "https://x.com/nothassanaziz" },
   { label: "YouTube", href: "https://youtube.com/@itshassanaziz" },
   { label: "GitHub", href: "https://github.com/hassanaziz0012" },
+];
+
+const pageLinks = [
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
 ];
 
 export default function Footer() {
@@ -50,6 +57,17 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-border pt-6 text-text-muted text-xs text-center">
           © {new Date().getFullYear()} Jumprope Tracker ·{" "}
+          {pageLinks.map((link) => (
+            <span key={link.href}>
+              <Link
+                href={link.href}
+                className="text-text-muted hover:text-text-secondary transition-colors duration-200 no-underline"
+              >
+                {link.label}
+              </Link>{" "}
+              ·{" "}
+            </span>
+          ))}
           <a
             href="https://www.hassandev.me"
             target="_blank"

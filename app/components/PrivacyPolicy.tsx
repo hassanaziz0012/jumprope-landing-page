@@ -1,15 +1,26 @@
-export default function PrivacyPolicy() {
+type HeadingTag = "h1" | "h2" | "h3" | "h4";
+
+// On the homepage the policy is a section under the hero's h1, so its title is
+// an h2; on the standalone /privacy page the title is the page's h1.
+export default function PrivacyPolicy({ standalone = false }: { standalone?: boolean }) {
   const email = "hassanaziz0012@gmail.com"
+  const [Title, Section, Sub]: HeadingTag[] = standalone ? ["h1", "h2", "h3"] : ["h2", "h3", "h4"];
 
   return (
     <section
-      className="py-[clamp(3rem,6vh,5rem)] border-t border-border "
+      className={`py-[clamp(3rem,6vh,5rem)] ${standalone ? "" : "border-t border-border "}`}
       id="privacy-policy"
     >
       <div className="w-full max-w-[720px] mx-auto px-[clamp(1rem,5vw,3rem)]">
-        <h3 className="text-text-muted text-sm font-semibold uppercase tracking-wider mb-6">
+        <Title
+          className={
+            standalone
+              ? "text-[clamp(2rem,3vw+0.5rem,3rem)] font-bold leading-tight tracking-tight mb-6"
+              : "text-text-muted text-sm font-semibold uppercase tracking-wider mb-6"
+          }
+        >
           Privacy Policy
-        </h3>
+        </Title>
         <div className="text-text-secondary text-[0.8125rem] leading-relaxed space-y-8">
           <div className="space-y-4">
             <div>
@@ -20,39 +31,39 @@ export default function PrivacyPolicy() {
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">1. Who made this app?</h1>
+            <Section className="text-base font-bold text-text-primary">1. Who made this app?</Section>
             <p>Jump Rope Tracker was built by <strong className="text-text-primary">Hassan Aziz</strong>, an independent developer. This is not a company &mdash; it&apos;s a solo hobby project.</p>
             <p>If you have any questions or concerns about your privacy, you can reach out directly at <a href={`mailto:${email}`} className="text-text-secondary hover:text-text-primary transition-colors duration-200 underline underline-offset-2 font-medium">hassanaziz0012@gmail.com</a>.</p>
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">2. Who is this app for?</h1>
+            <Section className="text-base font-bold text-text-primary">2. Who is this app for?</Section>
             <p>This app is for people aged 13 and older. If you&apos;re under 13, please don&apos;t use it. I don&apos;t knowingly collect information from children under 13, and if I find out that&apos;s happened, I&apos;ll delete that data.</p>
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">3. By default: your data never leaves your phone</h1>
+            <Section className="text-base font-bold text-text-primary">3. By default: your data never leaves your phone</Section>
             <p>Everything you log &mdash; workouts, goals, streaks, charts, notes &mdash; is saved only on your device. Nothing is sent anywhere unless you turn on one of the optional features below.</p>
             <p>This also applies to notifications. Streak reminders and goal nudges are generated entirely on your device. No server is involved.</p>
             <p>The social sharing feature works the same way: it creates a shareable image on your device. That image goes nowhere unless you choose to send it yourself. Once you share it via WhatsApp, email, or any other app, what happens to it is up to that app, not this one.</p>
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">4. Cloud Sync (optional &mdash; off by default)</h1>
+            <Section className="text-base font-bold text-text-primary">4. Cloud Sync (optional &mdash; off by default)</Section>
             <p>If you turn on Cloud Sync, you&apos;ll need to create an account using your name and email address. Once enabled, all of your app data is backed up to a server &mdash; workouts, goals, streaks, charts, notes, everything.</p>
 
-            <h2 className="text-sm font-semibold text-text-primary mt-4">Where is it stored?</h2>
+            <Sub className="text-sm font-semibold text-text-primary mt-4">Where is it stored?</Sub>
             <p>Your data is stored on servers hosted by Vercel and NeonDB. These are reputable cloud infrastructure providers, but they operate under their own privacy policies and terms of service, which are outside my control.</p>
 
-            <h2 className="text-sm font-semibold text-text-primary mt-4">Want to delete your data?</h2>
+            <Sub className="text-sm font-semibold text-text-primary mt-4">Want to delete your data?</Sub>
             <p>Turn off cloud sync for your account inside the app, and all your data will be automatically deleted from our cloud servers.</p>
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">5. AI Training Coach (optional &mdash; off by default)</h1>
+            <Section className="text-base font-bold text-text-primary">5. AI Training Coach (optional &mdash; off by default)</Section>
             <p>The AI Coach gives you personalized coaching and analysis based on your workout history. It&apos;s powered by Google Gemini. Before you can turn it on, you&apos;ll see a clear explanation of what data gets shared and where it goes &mdash; you have to explicitly agree.</p>
 
-            <h2 className="text-sm font-semibold text-text-primary mt-4">What gets sent to Google?</h2>
+            <Sub className="text-sm font-semibold text-text-primary mt-4">What gets sent to Google?</Sub>
             <p>When the AI Coach is active, the following is sent to Google&apos;s Gemini API (via my backend server):</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Your workout data, including any notes you&apos;ve written</li>
@@ -62,18 +73,18 @@ export default function PrivacyPolicy() {
             </ul>
             <p><strong className="text-text-primary">Heads up:</strong> Your workout notes are plain text and are included when your data is sent to Gemini. Avoid putting sensitive personal information in your notes if you plan to use the AI Coach.</p>
 
-            <h2 className="text-sm font-semibold text-text-primary mt-4">Google&apos;s role</h2>
+            <Sub className="text-sm font-semibold text-text-primary mt-4">Google&apos;s role</Sub>
             <p>Google processes the data you send through the AI Coach according to their own privacy policy. I don&apos;t control what Google does with that data on their end.</p>
 
-            <h2 className="text-sm font-semibold text-text-primary mt-4">Chat history</h2>
+            <Sub className="text-sm font-semibold text-text-primary mt-4">Chat history</Sub>
             <p>Your conversations with the AI Coach are stored on my server and kept until you delete them. There&apos;s no automatic expiry. You can delete individual chats or everything from within the app&apos;s Settings.</p>
 
-            <h2 className="text-sm font-semibold text-text-primary mt-4">Turning it off</h2>
+            <Sub className="text-sm font-semibold text-text-primary mt-4">Turning it off</Sub>
             <p>You can disable the AI Coach at any time in Settings. This immediately stops all data from being sent. You&apos;ll also be given the option to delete your stored conversation history.</p>
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">6. Crash reporting (Sentry)</h1>
+            <Section className="text-base font-bold text-text-primary">6. Crash reporting (Sentry)</Section>
             <p>The app uses a service called Sentry to catch bugs and crashes. This runs in the background for all users and helps me fix problems.</p>
             <p>When a crash or error happens, Sentry may collect:</p>
             <ul className="list-disc pl-5 space-y-1">
@@ -88,7 +99,7 @@ export default function PrivacyPolicy() {
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">7. A note on third-party services</h1>
+            <Section className="text-base font-bold text-text-primary">7. A note on third-party services</Section>
             <p>This app connects to a few external services when you use optional features. Each of these services is responsible for their own data practices:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Vercel &mdash; hosts the backend server</li>
@@ -100,7 +111,7 @@ export default function PrivacyPolicy() {
           </div>
 
           <div className="space-y-3">
-            <h1 className="text-base font-bold text-text-primary">8. Changes to this policy</h1>
+            <Section className="text-base font-bold text-text-primary">8. Changes to this policy</Section>
             <p>If I make significant changes to this policy, I&apos;ll let you know through the app. The &quot;Last Updated&quot; date at the top of this document will always reflect the latest version. Continuing to use the app after a change means you&apos;re okay with the updated policy.</p>
           </div>
         </div>

@@ -1,49 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const faqs = [
-  {
-    question: "Is this app really free?",
-    answer:
-      "Yes, completely free. No in-app purchases, no subscriptions, no premium tier. Download it, use it forever.",
-  },
-  {
-    question: "Does it require an internet connection?",
-    answer:
-      "No. The app is fully offline. All your data is stored locally on your device. We offer cloud-sync features, but those are optional.",
-  },
-  {
-    question: "Is my data safe?",
-    answer:
-      "The app is designed to work completely offline. Your data never leaves your device, unless you enable features like cloud sync or AI coach. Feel free to read our privacy policy if you want to learn more.",
-  },
-  {
-    question: "What platforms does Jumprope Tracker support?",
-    answer:
-      "Jumprope Tracker is available for Android (via Google Play or direct APK) and iOS (IPA). It's built with React Native, so it runs natively on both platforms.",
-  },
-  {
-    question: "Can I export my workout data?",
-    answer:
-      "Yes. You can export all your workouts as a CSV or JSON file anytime from the Settings screen. Save it to your files, email it to yourself, or upload it to cloud storage.",
-  },
-  {
-    question: "What is the AI Coach?",
-    answer:
-      "The AI Coach is an in-app chat assistant that has access to your workout history, goals, and streaks. You can ask it for training advice, request a weekly digest, or even log a workout in plain English.",
-  },
-  {
-    question: "What happens if I miss a day and break my streak?",
-    answer:
-      "Your streak resets. No freezes, no mercy — that's by design. Consistency is the whole point. You can mark planned rest days in advance to preserve your streak.",
-  },
-  {
-    question: "Is the app open source?",
-    answer:
-      "Yes! You can find the full source code on GitHub. Contributions and feedback are welcome.",
-  },
-];
+import { faqs } from "../content";
 
 function AccordionItem({
   item,
